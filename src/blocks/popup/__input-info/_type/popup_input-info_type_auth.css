@@ -1,0 +1,11 @@
+.popup_input-info_type_auth {
+  background: transparent;
+  border-bottom: 2px solid #CCCCCC;
+  color: #fff;
+}
+
+@media screen and (max-width: 320px) {
+  .popup_input-info_type_auth {
+    width: 98%;
+  }
+}

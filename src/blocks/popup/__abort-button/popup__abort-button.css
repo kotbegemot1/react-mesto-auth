@@ -1,0 +1,30 @@
+.popup__abort-button {
+  background-image: url(../../../images/close_butt.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: calc(10px + 2vw);
+  height: calc(10px + 2vw);
+  min-width: 20px;
+  min-height: 20px;
+  position: absolute;
+  right: 0;
+  top: -40px;
+  padding: 0;
+  margin-right: -10%;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .popup__abort-button {
+  margin-right: -3.2vw;
+}
+}
+
+@media screen and (max-width: 500px) {
+  .popup__abort-button {
+    background-image: url(../../../images/close_butt_20x20.svg);
+    margin-right: 0;
+    top: -35px;
+  }
+}

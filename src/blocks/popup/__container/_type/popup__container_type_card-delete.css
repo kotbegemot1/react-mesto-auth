@@ -1,0 +1,12 @@
+
+.popup__container_type_card-delete {
+  /* box-sizing: border-box; */
+  min-height: 181px;
+  padding: 34px 36px 36px;
+}
+
+@media screen and (max-width: 500px) {
+  .popup__container_type_card-delete {
+    padding: 25px 22px;
+  }
+}

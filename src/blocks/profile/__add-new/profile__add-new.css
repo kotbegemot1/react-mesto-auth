@@ -1,0 +1,22 @@
+.profile__add-new {
+  background-image: url(../../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-left: auto;
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  background-color: #000;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  align-self: center;
+}
+
+@media screen and (max-width: 950px) {
+  .profile__add-new {
+    background-image: url(../../../images/plus_16x16.svg);
+    margin-left: 0;
+    width: 282px;
+    height: 50px;
+  }
+}

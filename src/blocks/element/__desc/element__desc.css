@@ -1,0 +1,10 @@
+.element__desc {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 17px 5px 21px;
+  min-height: 80px;
+
+  color: #000000;
+  background-color: #FFFFFF;
+}

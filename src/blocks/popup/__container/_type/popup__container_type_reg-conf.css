@@ -1,0 +1,6 @@
+.popup__container_type_reg-conf{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
