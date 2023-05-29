@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate } from "react-router-dom";
 
 // этот компонент принимает другой компонент в качестве пропса

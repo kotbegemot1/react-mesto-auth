@@ -1,13 +1,13 @@
-import React from "react";
+import {useState, useEffect} from "react";
 
 import PopupWithForm from './PopupWithForm'
 
 export default function AddPlacePopup(props) {
 
-  const [title, setTitle] = React.useState();
-  const [link, setLink] = React.useState();
+  const [title, setTitle] = useState();
+  const [link, setLink] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTitle('');
     setLink('');
   }, [props.isOpen])

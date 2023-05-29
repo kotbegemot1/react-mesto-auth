@@ -1,4 +1,4 @@
-import React from "react"
+import { useState } from "react"
 import {Link} from 'react-router-dom';
 import AuthForm from './AuthForm'
 
@@ -8,7 +8,7 @@ export default function Register(props) {
     <Link to='/sign-in' className="popup__additional-question button">Уже зарегистрировались? Войти</Link>
   )
 
-  const [formValue, setFormValue] = React.useState({
+  const [formValue, setFormValue] = useState({
     email: '',
     password: ''
   })

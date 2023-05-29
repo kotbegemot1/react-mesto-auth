@@ -1,4 +1,3 @@
-import React from "react"
 import ConfirmImg from '../images/confirmed_popup.png'
 import ErrorImg from '../images/error_conf_popup.png'
 

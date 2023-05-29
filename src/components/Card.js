@@ -1,4 +1,3 @@
-import React from "react"
 import Basket from '../images/basket.svg'
 
 export default function Card({card, currentUserId, onCardClick, onCardLike, onCardDelete}) {

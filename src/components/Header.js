@@ -1,18 +1,10 @@
-import React from "react"
+import { useState } from "react"
 import Logo from '../images/Logo.svg'
-import { useLocation, Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 
 export default function Header(props) {
-  const location = useLocation();
 
-  const [isMobileMenu, setIsMobileMenu] = React.useState(false);
-
-  const getLinkInfo = (function () {
-    return location.pathname === "/sign-up" ?
-      { linkName: 'Войти', path: '/sign-in' } :
-      { linkName: 'Регистрация', path: '/sign-up' };
-
-  }())
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
 
   function useMobileMenu() {
     setIsMobileMenu(!isMobileMenu);
@@ -41,16 +33,24 @@ export default function Header(props) {
 
         <p className="header__email">{props.userEmail && props.userEmail}</p>
 
-        {props.loggedIn
-          ?
-          <button
-            type="button"
-            onClick={handleSignOut}
-            className={`header__auth-btn button ${isMobileMenu && "header__auth-btn_type_mob-menu"}`}
-          >Выйти</button>
-          :
-          <Link to={getLinkInfo.path} className="header__auth-btn button">{getLinkInfo.linkName}</Link>
-        }
+        <Routes>
+          <Route path='/' element={
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className={`header__auth-btn button ${isMobileMenu && "header__auth-btn_type_mob-menu"}`}
+            >Выйти</button>
+          }
+          />
+          <Route path='/sign-in' element={
+            <Link to='/sign-up' className="header__auth-btn button">Регистрация</Link>
+          }
+          />
+          <Route path='/sign-up' element={
+            <Link to='/sign-in' className="header__auth-btn button">Войти</Link>
+          }
+          />
+        </Routes>
 
       </div>
     </header>

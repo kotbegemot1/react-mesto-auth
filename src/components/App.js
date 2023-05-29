@@ -1,4 +1,4 @@
-import React from "react";
+import {useState, useEffect} from "react";
 
 
 import Header from './Header';
@@ -23,24 +23,24 @@ import { auth } from '../utils/auth';
 
 function App() {
 
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isOpenImage, setIsOpenImage] = React.useState(false);
-  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = React.useState(false);
-  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
-  const [tooltipTitle, setTooltipTitle] = React.useState('');
-  const [isConfirmReg, setIsConfirmReg] = React.useState();
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isOpenImage, setIsOpenImage] = useState(false);
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [tooltipTitle, setTooltipTitle] = useState('');
+  const [isConfirmReg, setIsConfirmReg] = useState();
 
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cardList, setCardList] = React.useState([]);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cardList, setCardList] = useState([]);
 
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [selectedCard, setSelectedCard] = useState({});
 
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
-  const [loggedIn, setLoggedIn] = React.useState(false);
-  const [userEmail, setUserEmail] = React.useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
 
   const navigate = useNavigate();
 
@@ -136,28 +136,30 @@ function App() {
         navigate('/', {replace: true})
       }
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      setTooltipTitle('Что-то пошло не так! Попробуйте ещё раз.');
+      disproveAuth();
+    })
   }
   
   function confirmReg(){
     setIsConfirmReg(true)
-    setTooltipTitle('Вы успешно зарегистрировались!')
     setIsInfoTooltipPopupOpen(true);
   }
 
-  function disproveReg(){
+  function disproveAuth(){
     setIsConfirmReg(false)
-    setTooltipTitle('Что-то пошло не так! Попробуйте ещё раз.')
     setIsInfoTooltipPopupOpen(true);
   }
 
   function handleRegister(formValue) {
     auth.Register(formValue.email, formValue.password)
     .then((res)=>{
+      setTooltipTitle('Вы успешно зарегистрировались!')
       confirmReg();
       navigate('/sign-in', {replace: true});
     })
-    .catch((err) => disproveReg())
+    .catch((err) => console.log(err))
   }
 
   function signOut() {
@@ -176,10 +178,10 @@ function App() {
     setIsDeleteCardPopupOpen(false);
     setIsInfoTooltipPopupOpen(false);
   }
-  React.useEffect(() => {
+  useEffect(() => {
     (function tokenCheck() {
-      if (localStorage.getItem('token')){
         const token = localStorage.getItem('token');
+        if (token) {
         auth.checkToken(token)
         .then((res) => {
           setUserEmail(res.data.email);
@@ -191,14 +193,18 @@ function App() {
     }());
   }, [navigate]);
   
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+  useEffect(() => {
+    // console.log(loggedIn);
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([currentUser, cards]) => {
         setCurrentUser(currentUser);
         setCardList(cards);
+        // console.log(cards);
       })
       .catch((err) => console.log(err));
-  }, []);
+    }
+  }, [loggedIn]);
 
   return (
     <div className="page">
