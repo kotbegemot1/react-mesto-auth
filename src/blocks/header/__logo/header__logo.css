@@ -3,12 +3,14 @@
   background-repeat: no-repeat;
   background-size: 142px;
   padding-bottom: 72px;
-  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  
   width: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .header__logo {
+    /* margin-top: 140px; */
+    /* margin-top v4erashnii */
     background-size: 103.7px;
     background-position: 26px;
     padding-bottom: 62px;

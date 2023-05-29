@@ -3,18 +3,27 @@
   margin: 0 auto;
   width: 69.5%;
   padding-top: 45px;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media screen and (max-width: 768px) {
   .header {
-    padding-top: calc(18px + 3.1vw);
+    position: relative;
+    /* padding-top: calc(18px + 3.1vw); */
+    width: 100%;
+    padding-top: 1px;
+    /* height: 222px; */
+    margin: 0 auto;
+
   }
 }
 
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   .header {
+
     padding-top: 1px;
     margin: 0 auto;
     width: 100%;
   }
-}
+} */
+

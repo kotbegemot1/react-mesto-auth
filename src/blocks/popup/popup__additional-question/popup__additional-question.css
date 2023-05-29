@@ -1,6 +1,8 @@
 .popup__additional-question {
+  display: block;
   margin: 16px 0 0;
   text-align: center;
+  text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
